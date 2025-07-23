@@ -5,7 +5,7 @@ from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 
 # --- Sidebar Config ---
-st.sidebar.title("🔐 Groq API Settings")
+st.sidebar.title("Groq API Settings")
 api_key = st.sidebar.text_input("Enter your Groq API Key", type="password")
 base_url = "https://api.groq.com/openai/v1"
 model = st.sidebar.selectbox("Select Groq Model", [
@@ -17,7 +17,7 @@ model = st.sidebar.selectbox("Select Groq Model", [
 temperature = st.sidebar.slider("LLM Temperature", 0.0, 1.0, 0.2, 0.05)
 
 # --- Main UI ---
-st.title("💬 RAG QA with Groq & FAISS")
+st.title("RAG QA with Groq & FAISS")
 query = st.text_input("Ask a question about Changi Airport:")
 run_button = st.button("Get Answer")
 
@@ -46,12 +46,12 @@ if api_key and run_button and query:
 
         # Get result
         response = qa_chain(query)
-        st.success("✅ Answer received!")
+        st.success("Answer received!")
 
-        st.subheader("🧠 Answer")
+        st.subheader("Answer")
         st.write(response["result"])
 
-        st.subheader("📄 Source Documents")
+        st.subheader("Source Documents")
         for i, doc in enumerate(response["source_documents"], 1):
             st.markdown(f"**Source {i}:** {doc.metadata.get('source', 'N/A')}")
             st.code(doc.page_content[:1000], language="markdown")
